@@ -3,8 +3,46 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './app';
 import * as serviceWorker from './serviceWorker';
+import { createBrowserHistory } from 'history';
+import configureMusicoStore from './store/configure-store';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { AppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
+import { ApolloClient } from 'apollo-client';
+import { ApolloProvider } from '@apollo/react-hooks';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { HttpLink } from 'apollo-link-http';
+
+const history = createBrowserHistory({ basename: 'localhost:3000' });
+const store = configureMusicoStore(history);
+
+const cache = new InMemoryCache();
+const link = new HttpLink({
+    uri: 'https://spotify-api-graphql-console.herokuapp.com/'
+});
+
+const client = new ApolloClient({
+    cache,
+    link
+});
+
+const render = (Component: any) => {
+    ReactDOM.render(
+        <AppContainer>
+            <Provider store={store}>
+                <ConnectedRouter history={history}>
+                    <ApolloProvider client={client}>
+                        <Component />
+                    </ApolloProvider>
+                </ConnectedRouter>
+            </Provider>
+        </AppContainer>,
+        document.getElementById('root')
+    );
+};
+
+render(App);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

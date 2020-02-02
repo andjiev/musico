@@ -1,20 +1,13 @@
 import React from 'react';
+import { Route } from 'react-router';
+
+import { ROUTES } from './consts';
+import Explore from './pages/explore';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <Route exact path={ROUTES.EXPLORE} component={Explore}></Route>
+  )
+};
 
 export default App;
