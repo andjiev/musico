@@ -1,9 +1,10 @@
 import React from 'react'
-import IconNote from '../../../public/icon-note.png';
-import { Card, CardImg, CardTitle, CardText, CardBody, Button, Row, Col } from 'reactstrap';
-import { IProps } from './element.props';
 
-const Element = (props: IProps) => {
+import { Card, CardImg, CardTitle, CardText, CardBody, Button, Row, Col } from 'reactstrap';
+import { IElementProps } from './element.props';
+import IconNote from '../../assets/icon-note.png';
+
+const Element = (props: IElementProps) => {
     return (
         <Card className="pb-3 border-0">
             <CardImg top width="100%" src={IconNote} alt="Card image cap" />
