@@ -12,8 +12,8 @@ const Element = (props: IElementProps) => {
                 <CardTitle>{props.name}</CardTitle>
                 <CardText>{props.artist}</CardText>
                 <Row>
-                    <Col xs={6} md={5} lg={6}><Button><i className="fa fa-music"></i> Review</Button></Col>
-                    <Col xs={6} md={5} lg={6}><Button><i className="fa fa-star"></i> Collect</Button></Col>
+                    <Col xs={6} md={6} lg={6}><Button><div><i className="fa fa-music"></i></div> Review</Button></Col>
+                    <Col xs={6} md={6} lg={6}><Button><div><i className="fa fa-star"></i></div> Collect</Button></Col>
                 </Row>
             </CardBody>
         </Card>

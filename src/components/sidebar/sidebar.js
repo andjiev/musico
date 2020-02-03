@@ -1,5 +1,6 @@
 import React from 'react'
 import '../sidebar/sidebar.css';
+import { NavLink} from 'react-router-dom';
 
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import logo from '../../assets/logo-white.png';
@@ -10,33 +11,33 @@ const Sidebar = () => {
     return (
         <SideNav
             onSelect={(selected) => {
-                // Add your code here
             }}
         >
+
             <SideNav.Toggle />
             <SideNav.Nav defaultSelected="home">
                 <NavItem eventKey="home">
                     <NavIcon>
-                        <i className="fa fa-search" style={{ fontSize: '1.5em' }} />
+                    <NavLink to="/"><i className="fa fa-search" style={{ fontSize: '1.5em' }} /></NavLink>
                     </NavIcon>
                     <NavText>
-                        Explore
+                    <NavLink to="/">Explore</NavLink>
                 </NavText>
                 </NavItem>
                 <NavItem eventKey="favourites">
                     <NavIcon>
-                        <i className="fa fa-star-o" style={{ fontSize: '1.5em' }} />
+                    <NavLink to="/favourites"><i className="fa fa-star-o" style={{ fontSize: '1.5em' }} /></NavLink>
                     </NavIcon>
                     <NavText>
-                        Favourites
+                       <NavLink to="/favourites">Favourites</NavLink>
                 </NavText>
                 </NavItem>
                 <NavItem eventKey="popular">
                     <NavIcon>
-                        <i className="fa fa-fire" style={{ fontSize: '1.5em' }} />
+                    <NavLink to="/popular"><i className="fa fa-fire" style={{ fontSize: '1.5em' }} /></NavLink>
                     </NavIcon>
                     <NavText>
-                        Popular
+                    <NavLink to="/popular">Popular</NavLink>
                 </NavText>
                 </NavItem>
                 <img src={logo} className="logo" alt="Logo" />

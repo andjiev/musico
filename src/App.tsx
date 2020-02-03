@@ -1,20 +1,29 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 
 // css
 import './app.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import Sidebar from './components/sidebar';
+import Header from './components/header';
+
 import { ROUTES } from './consts';
 import Explore from './pages/explore';
-import Sidebar from './components/sidebar';
+import Favourites from './pages/favourites';
+import Popular from './pages/popular';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+  <Router>
+  <div className="App">
       <Sidebar />
-      <Route exact path={ROUTES.EXPLORE} component={Explore}></Route>
+      <Header />
+        <Route exact path={ROUTES.EXPLORE} component={Explore}></Route>
+        <Route exact path={ROUTES.FAVOURITES} component={Favourites}></Route>
+        <Route exact path={ROUTES.POPULAR} component={Popular}></Route>
     </div>
+  </Router>
   )
 };
 

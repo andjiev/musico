@@ -1,5 +1,7 @@
 const ROUTES = {
-    EXPLORE: '/'
+    EXPLORE: '/',
+    FAVOURITES: '/favourites',
+    POPULAR: '/popular',
 };
 
 export { ROUTES };

@@ -7,7 +7,6 @@ import { GET_TRACK } from '../../consts';
 import { Container, Row, Col } from 'reactstrap';
 import { Element } from '../../components/element';
 import './explore.css';
-import Header from '../../components/header';
 
 const Explore = () => {
     // const { data, loading, error } = useQuery<SpotifyResult>(GET_TRACK);
@@ -21,8 +20,6 @@ const Explore = () => {
 
     return (
         <>
-            <Header />
-
             <div className="elementsContainer">
                 <Container >
                     <Row className="p3">

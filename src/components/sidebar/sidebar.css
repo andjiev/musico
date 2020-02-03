@@ -23,6 +23,9 @@
     -ms-transition: min-width 0.2s;
     transition: min-width 0.2s;
   }
+  .sidenav---sidenav---_2tBP a {
+    text-decoration: none;
+  }
   .sidenav---sidenav---_2tBP.sidenav---collapsed---LQDEv .sidenav---sidenav-nav---3tvij .sidenav---sidenav-navitem---uwIJ- .sidenav---sidenav-subnav---1EN61 {
     display: none;
   }

@@ -2,7 +2,8 @@
     padding-top: 5vh;
 }
 button{
-    padding: 15px;
+    
+    padding: 13px;
     background: linear-gradient(to bottom, #013E5E, #003452);
     border: none;
     color: #fff;
@@ -11,7 +12,7 @@ button{
     margin-left: 15px;
 }
 input{
-        padding: 15px;
+        padding: 16px;
         width: 50vw;
         font-size: 13px;
         border: none;
