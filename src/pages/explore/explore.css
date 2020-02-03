@@ -1,0 +1,43 @@
+.elementsContainer{
+    padding-top: 20px;
+}
+@media only screen and (min-width: 600px) {
+    .elementsContainer{
+        margin-left: 7vw;
+    }
+}
+@media only screen and (max-width: 599px) {
+    .elementsContainer{
+        margin-left: 17vw;
+    }
+}
+.card{
+    border: none;
+}
+.card-body{
+    background: linear-gradient(to bottom, #013E5E, #003452);
+    color: #fff;
+}
+.card-title{
+    font-size: 20px;
+    text-transform: uppercase;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.card-text{
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+button.btn.btn-secondary{
+    background: #1DE9B7;
+    color: #003452;
+    border: none;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: bold;
+}

@@ -19,7 +19,7 @@ const store = configureMusicoStore(history);
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-    uri: 'https://spotify-api-graphql-console.herokuapp.com/'
+    uri: 'https://spotify-api-graphql-console.herokuapp.com/graphql'
 });
 
 const client = new ApolloClient({

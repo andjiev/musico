@@ -1,0 +1,9 @@
+.header {
+    height: 20vh;
+    background: #1DE9B7 url("../../assets/logo.png") no-repeat;
+}
+@media only screen and (max-width: 600px) {
+    .header{
+       background: #1DE9B7 url("../../assets/logo.png") no-repeat;
+    }
+}
