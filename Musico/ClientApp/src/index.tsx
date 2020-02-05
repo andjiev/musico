@@ -16,7 +16,8 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 
-const history = createBrowserHistory({ basename: 'localhost:3000' });
+const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
+const history = createBrowserHistory({ basename: baseUrl! });
 const store = configureMusicoStore(history);
 
 const cache = new InMemoryCache();
