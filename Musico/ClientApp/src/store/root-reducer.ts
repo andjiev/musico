@@ -1,5 +1,7 @@
+import * as ExploreStore from './explore-store';
+
 const reducers = {
-  // TODO
+  exploreStore: ExploreStore.reducer
 };
 
 export { reducers };

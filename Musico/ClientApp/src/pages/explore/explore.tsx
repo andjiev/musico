@@ -1,22 +1,23 @@
-import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
-import { SpotifyResult } from '../../lib/models';
-import { GET_TRACK } from '../../consts';
-
+import './explore.css';
 import { Container, Row, Col } from 'reactstrap';
 import { Element } from '../../components/element';
-import './explore.css';
+import { RouteComponentProps } from 'react-router';
+import { AppDispatch } from '../..';
+import * as ExploreStore from '../../store/explore-store';
+import ApplicationState from '../../store/application-state';
 
-const Explore = () => {
-    // const { data, loading, error } = useQuery<SpotifyResult>(GET_TRACK);
+interface IProps extends RouteComponentProps {
+    onPageInit: () => void;
+}
 
-    // if (loading) {
-    //     return <p>Loading...</p>;
-    // }
-    // if (error) {
-    //     return <p>Error</p>;
-    // }
+const Explore = (props: IProps) => {
+    useEffect(() => {
+        document.title = 'Explore';
+        props.onPageInit();
+    }, []);
 
     return (
         <>
@@ -34,4 +35,16 @@ const Explore = () => {
     );
 };
 
-export default Explore;
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+    onPageInit: () => {
+        // TODO: dispatch event
+    }
+});
+
+const mapStateToProps = (state: ApplicationState) => {
+    return {};
+};
+
+const ExplorePage = connect(() => mapStateToProps, mapDispatchToProps)(Explore);
+
+export default ExplorePage;

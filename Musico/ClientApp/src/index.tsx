@@ -30,6 +30,7 @@ const client = new ApolloClient({
     link
 });
 
+export type AppDispatch = typeof store.dispatch;
 const render = (Component: any) => {
     ReactDOM.render(
         <AppContainer>
