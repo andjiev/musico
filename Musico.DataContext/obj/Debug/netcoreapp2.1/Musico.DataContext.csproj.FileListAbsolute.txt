@@ -1,0 +1,9 @@
+D:\Work\musico\Musico.DataContext\bin\Debug\netcoreapp2.1\Musico.DataContext.deps.json
+D:\Work\musico\Musico.DataContext\bin\Debug\netcoreapp2.1\Musico.DataContext.dll
+D:\Work\musico\Musico.DataContext\obj\Debug\netcoreapp2.1\Musico.DataContext.csprojAssemblyReference.cache
+D:\Work\musico\Musico.DataContext\obj\Debug\netcoreapp2.1\Musico.DataContext.csproj.CoreCompileInputs.cache
+D:\Work\musico\Musico.DataContext\obj\Debug\netcoreapp2.1\Musico.DataContext.AssemblyInfoInputs.cache
+D:\Work\musico\Musico.DataContext\obj\Debug\netcoreapp2.1\Musico.DataContext.AssemblyInfo.cs
+D:\Work\musico\Musico.DataContext\bin\Debug\netcoreapp2.1\Musico.DataContext.pdb
+D:\Work\musico\Musico.DataContext\obj\Debug\netcoreapp2.1\Musico.DataContext.dll
+D:\Work\musico\Musico.DataContext\obj\Debug\netcoreapp2.1\Musico.DataContext.pdb

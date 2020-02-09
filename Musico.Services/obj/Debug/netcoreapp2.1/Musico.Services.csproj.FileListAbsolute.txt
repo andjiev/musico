@@ -1,0 +1,12 @@
+D:\Work\Musico\Musico.Services\bin\Debug\netcoreapp2.1\Musico.Services.deps.json
+D:\Work\Musico\Musico.Services\bin\Debug\netcoreapp2.1\Musico.Services.dll
+D:\Work\Musico\Musico.Services\obj\Debug\netcoreapp2.1\Musico.Services.csprojAssemblyReference.cache
+D:\Work\Musico\Musico.Services\obj\Debug\netcoreapp2.1\Musico.Services.csproj.CoreCompileInputs.cache
+D:\Work\Musico\Musico.Services\obj\Debug\netcoreapp2.1\Musico.Services.AssemblyInfoInputs.cache
+D:\Work\Musico\Musico.Services\obj\Debug\netcoreapp2.1\Musico.Services.AssemblyInfo.cs
+D:\Work\Musico\Musico.Services\bin\Debug\netcoreapp2.1\Musico.Services.pdb
+D:\Work\Musico\Musico.Services\bin\Debug\netcoreapp2.1\Musico.DataContext.dll
+D:\Work\Musico\Musico.Services\bin\Debug\netcoreapp2.1\Musico.DataContext.pdb
+D:\Work\Musico\Musico.Services\obj\Debug\netcoreapp2.1\Musico.Services.csproj.CopyComplete
+D:\Work\Musico\Musico.Services\obj\Debug\netcoreapp2.1\Musico.Services.dll
+D:\Work\Musico\Musico.Services\obj\Debug\netcoreapp2.1\Musico.Services.pdb
