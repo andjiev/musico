@@ -22,7 +22,7 @@ const Explore = (props: IProps) => {
         props.onPageInit();
     }, []);
 
-    const { data, loading, error } = useQuery<ArtistResult>(GET_ARTIST('Travis Scott'));
+    const { data, loading, error } = useQuery<ArtistResult>(GET_ARTIST('Eminem'));
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error...</p>;
@@ -32,7 +32,7 @@ const Explore = (props: IProps) => {
             <div className="elementsContainer">
                 <Container >
                     <Row className="p3">
-                        <Col xs={12} md={4} lg={3}><Element name="Song Title" artist={data?.artist.name!} /></Col>
+                        <Col xs={12} md={4} lg={3}><Element name="Song Title" artist={data?.artist.name} imageUrl={data?.artist.images.length ? data?.artist.images[0].url : undefined} /></Col>
                         <Col xs={12} md={4} lg={3}><Element name="Song Title" artist="Artist01" /></Col>
                         <Col xs={12} md={4} lg={3}><Element name="Song Title" artist="Artist01" /></Col>
                         <Col xs={12} md={4} lg={3}><Element name="Song Title" artist="Artist01" /></Col>

@@ -2,14 +2,14 @@
 {
     using System.Collections.Generic;
 
-    public class Artist
+    public class Track
     {
         public string Id { get; set; }
 
         public string Name { get; set; }
 
-        public List<string> Genres { get; set; } = new List<string>();
+        public Album Album { get; set; }
 
-        public List<Image> Images { get; set; } = new List<Image>();
+        public List<Artist> Artists { get; set; } = new List<Artist>();
     }
 }

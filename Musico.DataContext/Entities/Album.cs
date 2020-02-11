@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class Artist
+    public class Album
     {
         public string Id { get; set; }
 

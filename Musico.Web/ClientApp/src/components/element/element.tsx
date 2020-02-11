@@ -7,7 +7,7 @@ import IconNote from '../../assets/icon-note.png';
 const Element = (props: IElementProps) => {
     return (
         <Card className="pb-3 border-0">
-            <CardImg top width="100%" src={IconNote} alt="Card image cap" />
+            <CardImg top width="100%" src={props.imageUrl ? props.imageUrl : IconNote} alt="Card image cap" />
             <CardBody className="text-center">
                 <CardTitle>{props.name}</CardTitle>
                 <CardText>{props.artist}</CardText>

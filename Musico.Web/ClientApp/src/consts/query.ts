@@ -20,7 +20,10 @@ const GET_TRACK = gql`
 const GET_ARTIST = (name: string) => gql`
 {
   artist(name: "${name}") {
-    name
+    name,
+    images {
+      url
+    }
   }
 }
 `;

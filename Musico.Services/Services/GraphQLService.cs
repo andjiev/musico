@@ -1,7 +1,7 @@
 ﻿namespace Musico.Services.Services
 {
     using GraphQL.Types;
-    using Musico.DataContext.Queries;
+    using Musico.Services.Queries;
 
     public class GraphQLService
         : IGraphQLService

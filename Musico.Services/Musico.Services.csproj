@@ -12,4 +12,8 @@
     <ProjectReference Include="..\Musico.DataContext\Musico.DataContext.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Profiles\" />
+  </ItemGroup>
+
 </Project>
