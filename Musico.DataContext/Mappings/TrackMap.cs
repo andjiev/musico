@@ -12,6 +12,7 @@
 
             Field(x => x.Id, type: typeof(StringGraphType)).Description("The ID of the Track");
             Field(x => x.Name, type: typeof(StringGraphType)).Description("The name of the Track");
+            Field(x => x.Popularity).Description("The popluratiry of the Track (0-100)");
             Field(x => x.Album, type: typeof(AlbumMap)).Description("Track's album");
             Field(x => x.Artists, type: typeof(ListGraphType<ArtistMap>)).Description("Track's artists");
         }

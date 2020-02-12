@@ -8,7 +8,7 @@
     {
         public IObjectGraphType GetArtistQuery()
         {
-            return new ArtistQuery();
+            return new TrackQuery();
         }
     }
 }

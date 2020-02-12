@@ -1,31 +1,22 @@
 import gql from 'graphql-tag';
 
-const GET_TRACK = gql`
+const GET_TRACKS = (search: string) => gql`
 {
-  track(name: "highest in the room") {
-    name
-    artists {
+  tracks(name: "${search}") {
+    id,
+    name,
+    popularity,
+    album {
       name,
       images {
         url
       }
-    }
-    album {
+    },
+    artists {
       name
-    }
-  }
-}
-`
-
-const GET_ARTIST = (name: string) => gql`
-{
-  artist(name: "${name}") {
-    name,
-    images {
-      url
     }
   }
 }
 `;
 
-export { GET_TRACK, GET_ARTIST };
+export { GET_TRACKS };

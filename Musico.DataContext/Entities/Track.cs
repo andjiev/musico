@@ -8,6 +8,8 @@
 
         public string Name { get; set; }
 
+        public int Popularity { get; set; }
+
         public Album Album { get; set; }
 
         public List<Artist> Artists { get; set; } = new List<Artist>();

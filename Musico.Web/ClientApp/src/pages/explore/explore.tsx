@@ -9,10 +9,12 @@ import { AppDispatch } from '../..';
 import * as ExploreStore from '../../store/explore-store';
 import ApplicationState from '../../store/application-state';
 import { useQuery } from '@apollo/react-hooks';
-import { GET_ARTIST } from '../../consts';
+import { GET_TRACKS } from '../../consts';
 import { ArtistResult } from '../../lib/models';
 
 interface IProps extends RouteComponentProps {
+    searchText: string;
+
     onPageInit: () => void;
 }
 
@@ -22,20 +24,26 @@ const Explore = (props: IProps) => {
         props.onPageInit();
     }, []);
 
-    const { data, loading, error } = useQuery<ArtistResult>(GET_ARTIST('Eminem'));
+    const { data, loading, error } = useQuery<ArtistResult>(GET_TRACKS(props.searchText));
 
     if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error...</p>;
+    if (error) return <p>Type something to search..</p>;
 
     return (
         <>
             <div className="elementsContainer">
                 <Container >
                     <Row className="p3">
-                        <Col xs={12} md={4} lg={3}><Element name="Song Title" artist={data?.artist.name} imageUrl={data?.artist.images.length ? data?.artist.images[0].url : undefined} /></Col>
-                        <Col xs={12} md={4} lg={3}><Element name="Song Title" artist="Artist01" /></Col>
-                        <Col xs={12} md={4} lg={3}><Element name="Song Title" artist="Artist01" /></Col>
-                        <Col xs={12} md={4} lg={3}><Element name="Song Title" artist="Artist01" /></Col>
+                        {data?.tracks.map(x => {
+                            return (
+                                <Col key={x.id} xs={12} md={4} lg={3}>
+                                    <Element
+                                        name={x.name}
+                                        artist={x.artists.map(x => x.name).join(', ')}
+                                        imageUrl={x.album.images.length ? x.album.images[0].url : undefined} />
+                                </Col>
+                            )
+                        })}
                     </Row>
                 </Container>
             </div>
@@ -50,7 +58,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
 });
 
 const mapStateToProps = (state: ApplicationState) => {
-    return {};
+    return {
+        searchText: state.exploreStore.searchText
+    };
 };
 
 const ExplorePage = connect(() => mapStateToProps, mapDispatchToProps)(Explore);

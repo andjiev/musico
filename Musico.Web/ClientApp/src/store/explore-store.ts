@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppThunk } from "./app-thunk";
 
 export interface ExploreStore {
-    // TODO
+    searchText: string;
 };
 
 export const initialState: ExploreStore = {
-    // TODO:
+    searchText: ''
 };
 
 const slice = createSlice({
@@ -15,11 +15,14 @@ const slice = createSlice({
     reducers: {
         setState: (state: ExploreStore, action: PayloadAction<any>) => {
             Object.assign(state, action.payload);
+        },
+        setSearchText: (state: ExploreStore, action: PayloadAction<string>) => {
+            state.searchText = action.payload;
         }
     }
 });
 
-export const { setState } = slice.actions;
+export const { setState, setSearchText } = slice.actions;
 
 export const reducer = slice.reducer;
 

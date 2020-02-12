@@ -1,10 +1,11 @@
 export interface ArtistResult {
-    artist: Artist;
+    tracks: Track[];
 }
 
 export interface Track {
     id: string;
     name: string;
+    popularity: number;
     album: Album;
     artists: Artist[];
 }
@@ -12,15 +13,12 @@ export interface Track {
 export interface Album {
     id: string;
     name: string;
-    genres: string[];
     images: Image[];
 }
 
 export interface Artist {
     id: string;
     name: string;
-    genres: string[];
-    images: Image[];
 }
 
 export interface Image {
