@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Track } from "../lib/models";
 import { AppThunk } from "./app-thunk";
 
 export interface ExploreStore {
@@ -13,25 +14,29 @@ const slice = createSlice({
     name: 'explore',
     initialState,
     reducers: {
-        setState: (state: ExploreStore, action: PayloadAction<any>) => {
-            Object.assign(state, action.payload);
-        },
         setSearchText: (state: ExploreStore, action: PayloadAction<string>) => {
             state.searchText = action.payload;
         }
     }
 });
 
-export const { setState, setSearchText } = slice.actions;
+export const { setSearchText } = slice.actions;
 
 export const reducer = slice.reducer;
 
 // thunk
 
-export const onPageInit = (): AppThunk => async (dispatch, store) => {
-    // TODO
+// AppThunk interface should be updated and replaced with any
+export const onSaveTrack = (track: Track): any => async (dispatch, store) => {
+    let item = localStorage.getItem('favourites');
 
-    console.log('On page init called');
-
-    dispatch(setState({}));
+    if (item) {
+        let tracks: Track[] = JSON.parse(item);
+        if (!tracks.filter(x => x.id === track.id).length) {
+            tracks.push(track);
+            localStorage.setItem('favourites', JSON.stringify(tracks));
+        }
+    } else {
+        localStorage.setItem('favourites', JSON.stringify([track]));
+    }
 }

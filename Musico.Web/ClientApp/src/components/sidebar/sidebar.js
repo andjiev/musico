@@ -9,10 +9,7 @@ import logo from '../../assets/logo-white.png';
 // we are keeping this component as javascript
 const Sidebar = () => {
     return (
-        <SideNav
-            onSelect={(selected) => {
-            }}
-        >
+        <SideNav>
             <SideNav.Toggle />
             <SideNav.Nav defaultSelected="home">
                 <NavItem eventKey="home">

@@ -1,12 +1,12 @@
 import React from 'react';
 
 import '../header/header.css';
-import { Input } from '../input';
+import SearchBar from '../search-bar';
 
 const Header = () => {
     return (
         <div className="header">
-            <Input />
+            <SearchBar />
         </div>
     );
 }
