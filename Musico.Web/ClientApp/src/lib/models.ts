@@ -1,5 +1,9 @@
-export interface ArtistResult {
+export interface TracksResult {
     tracks: Track[];
+}
+
+export interface AlbumResult {
+    newReleases: Album[];
 }
 
 export interface Track {
@@ -14,6 +18,7 @@ export interface Album {
     id: string;
     name: string;
     images: Image[];
+    artists: Artist[];
 }
 
 export interface Artist {

@@ -1,22 +1,23 @@
 namespace Musico.Web.Controllers
 {
     using System.Threading.Tasks;
+    using AutoMapper;
     using GraphQL;
     using GraphQL.Types;
     using Microsoft.AspNetCore.Mvc;
     using Musico.Services.Models;
-    using Musico.Services.Services;
+    using Musico.Services.Queries;
 
     [Route("graphql")]
     [ApiController]
     public class GraphQLController
         : Controller
     {
-        private readonly IGraphQLService service;
+        private readonly IMapper mapper;
 
-        public GraphQLController(IGraphQLService service)
+        public GraphQLController(IMapper mapper)
         {
-            this.service = service;
+            this.mapper = mapper;
         }
 
         [HttpPost]
@@ -26,7 +27,7 @@ namespace Musico.Web.Controllers
 
             var schema = new Schema
             {
-                Query = service.GetArtistQuery()
+                Query = new MusicoQuery(mapper)
             };
 
             var result = await new DocumentExecuter().ExecuteAsync(_ =>

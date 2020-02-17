@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import './explore.css';
+import Header from '../../components/header';
 import { Container, Row, Col } from 'reactstrap';
 import { Element } from '../../components/element';
 import { RouteComponentProps } from 'react-router';
@@ -10,7 +11,8 @@ import ApplicationState from '../../store/application-state';
 import * as ExploreStore from '../../store/explore-store';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_TRACKS } from '../../consts';
-import { ArtistResult, Track } from '../../lib/models';
+import { TracksResult, Track } from '../../lib/models';
+import BeatLoader from "react-spinners/BeatLoader";
 
 interface IProps extends RouteComponentProps {
     searchText: string;
@@ -23,13 +25,34 @@ const Explore = (props: IProps) => {
         document.title = 'Explore';
     }, []);
 
-    const { data, loading, error } = useQuery<ArtistResult>(GET_TRACKS(props.searchText));
+    const { data, loading, error } = useQuery<TracksResult>(GET_TRACKS(props.searchText));
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Type something to search..</p>;
+    if (loading) {
+        return (
+            <>
+                <Header />
+                <Container style={{ marginTop: '80px' }}>
+                    <Row className="justify-content-center">
+                        <BeatLoader size={40} color={'#013E5E'} loading />
+                    </Row>
+                </Container>
+            </>
+        );
+    }
+
+    if (error) {
+        return (
+            <>
+                <Header />
+
+                {/* Add some empty state picture */}
+            </>
+        );
+    }
 
     return (
         <>
+            <Header />
             <div className="elementsContainer">
                 <Container >
                     <Row className="p3">

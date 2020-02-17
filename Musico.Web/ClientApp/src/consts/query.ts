@@ -19,4 +19,37 @@ const GET_TRACKS = (search: string) => gql`
 }
 `;
 
-export { GET_TRACKS };
+const GET_NEW_RELEASES = gql`
+{
+  newReleases {
+    id,
+    name,
+    images {
+      url
+    },
+    artists {
+      name
+    }
+  }
+}
+`;
+
+const GET_ALBUM_TRACKS = (id: string) => gql`
+{
+  albumTracks(id: "${id}") {
+    id,
+    name,
+    album {
+      name,
+      images {
+        url
+      }
+    },
+    artists {
+      name
+    }
+  }
+}
+`;
+
+export { GET_TRACKS, GET_NEW_RELEASES };

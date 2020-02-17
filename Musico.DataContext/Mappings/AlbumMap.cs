@@ -14,6 +14,7 @@
             Field(x => x.Name, type: typeof(StringGraphType)).Description("The name of the Album");
             Field(x => x.Genres).Description("Album's genres");
             Field(x => x.Images, type: typeof(ListGraphType<ImageMap>)).Description("Album's images");
+            Field(x => x.Artists, type: typeof(ListGraphType<ArtistMap>)).Description("Album's artists");
         }
     }
 }

@@ -1,5 +1,6 @@
 namespace Musico.Web
 {
+    using AutoMapper;
     using GraphiQl;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -7,7 +8,6 @@ namespace Musico.Web
     using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Musico.Web.Infrastructure.Startup;
 
     public class Startup
     {
@@ -29,7 +29,7 @@ namespace Musico.Web
                 configuration.RootPath = "ClientApp/build";
             });
 
-            services.AddServices();
+            services.AddAutoMapper(typeof(Services.Profiles.TrackProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
