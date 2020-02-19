@@ -54,4 +54,4 @@ const GET_ALBUM_TRACKS = (id: string) => gql`
 }
 `;
 
-export { GET_TRACKS, GET_NEW_RELEASES };
+export { GET_TRACKS, GET_NEW_RELEASES, GET_ALBUM_TRACKS };

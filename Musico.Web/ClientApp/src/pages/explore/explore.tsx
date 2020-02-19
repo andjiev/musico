@@ -2,19 +2,17 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import './explore.css';
-import Header from '../../components/header';
 import { Container, Row, Col } from 'reactstrap';
 import { Element } from '../../components/element';
 import { RouteComponentProps } from 'react-router';
 import { AppDispatch } from '../..';
 import ApplicationState from '../../store/application-state';
-import * as ExploreStore from '../../store/explore-store';
+import * as SharedStore from '../../store/shared-store';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_TRACKS } from '../../consts';
 import { TracksResult, Track } from '../../lib/models';
 import BeatLoader from "react-spinners/BeatLoader";
 import logo from '../../assets/logo.png';
-// import ReactAudioPlayer from 'react-audio-player';
 
 interface IProps extends RouteComponentProps {
     searchText: string;
@@ -82,13 +80,13 @@ const Explore = (props: IProps) => {
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
     onSaveTrack: (track: Track) => {
-        dispatch(ExploreStore.onSaveTrack(track));
+        dispatch(SharedStore.onSaveTrack(track));
     }
 });
 
 const mapStateToProps = (state: ApplicationState) => {
     return {
-        searchText: state.exploreStore.searchText
+        searchText: state.sharedStore.searchText
     };
 };
 

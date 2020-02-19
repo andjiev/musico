@@ -2,19 +2,19 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Track } from "../lib/models";
 import { AppThunk } from "./app-thunk";
 
-export interface ExploreStore {
+export interface SharedStore {
     searchText: string;
 };
 
-export const initialState: ExploreStore = {
+export const initialState: SharedStore = {
     searchText: ''
 };
 
 const slice = createSlice({
-    name: 'explore',
+    name: 'shared',
     initialState,
     reducers: {
-        setSearchText: (state: ExploreStore, action: PayloadAction<string>) => {
+        setSearchText: (state: SharedStore, action: PayloadAction<string>) => {
             state.searchText = action.payload;
         }
     }
@@ -33,7 +33,7 @@ export const onSaveTrack = (track: Track): any => async (dispatch, store) => {
     if (item) {
         let tracks: Track[] = JSON.parse(item);
         if (!tracks.filter(x => x.id === track.id).length) {
-            tracks.push(track);
+            tracks.unshift(track);
             localStorage.setItem('favourites', JSON.stringify(tracks));
         }
     } else {

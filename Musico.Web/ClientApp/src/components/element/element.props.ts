@@ -4,8 +4,10 @@ export interface IElementProps {
     imageUrl?: string;
     previewClicked?: boolean;
     disablePreview?: boolean;
+    showOpenAlbumButton?: boolean;
     buttonText: string;
 
-    onPreviewClick: () => void;
-    onButtonClick: () => void;
+    onPreviewClick?: () => void;
+    onButtonClick?: () => void;
+    onOpenAlbumClick?: () => void;
 };

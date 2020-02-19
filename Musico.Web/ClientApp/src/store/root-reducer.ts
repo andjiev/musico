@@ -1,8 +1,8 @@
-import * as ExploreStore from './explore-store';
+import * as SharedStore from './shared-store';
 import * as FavouritesStore from './favourites-store';
 
 const reducers = {
-  exploreStore: ExploreStore.reducer,
+  sharedStore: SharedStore.reducer,
   favouritesStore: FavouritesStore.reducer
 };
 

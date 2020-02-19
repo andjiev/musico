@@ -6,6 +6,10 @@ export interface AlbumResult {
     newReleases: Album[];
 }
 
+export interface AlbumTrackResult {
+    albumTracks: Track[];
+}
+
 export interface Track {
     id: string;
     name: string;

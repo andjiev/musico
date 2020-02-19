@@ -6,7 +6,7 @@
         margin-left: 7vw;
     }
     .card-img-top{
-        height: 35vh;
+        height: 28vh;
     }
 }
 @media only screen and (max-width: 599px) {
@@ -45,7 +45,7 @@ p{
     color: #fff;
 }
 .card-img-top{
-    height: 35vh;
+    height: 28vh;
 }
 .card-title{
     font-size: 16px;

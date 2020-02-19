@@ -12,18 +12,30 @@ const Element = (props: IElementProps) => {
                 <CardTitle>{props.name}</CardTitle>
                 <CardText>{props.artist}</CardText>
                 <Row >
-                    <Col xs={6} md={6} lg={6}>
-                        <Button onClick={props.onPreviewClick} disabled={props.disablePreview} className={'btn-block'}>
-                            <div><i className="fa fa-music"></i></div>
-                            {props.previewClicked ? 'Stop' : 'Preview'}
-                        </Button>
-                    </Col>
-                    <Col xs={6} md={6} lg={6}>
-                        <Button onClick={props.onButtonClick} className={'btn-block'}>
-                            <div><i className="fa fa-star"></i></div>
-                            {props.buttonText}
-                        </Button>
-                    </Col>
+                    {props.showOpenAlbumButton ?
+                        <>
+                            <Col xs={12}>
+                                <Button onClick={props.onOpenAlbumClick} className={'btn-block'}>
+                                    <div><i className="fa fa-music"></i></div>
+                                    Open album
+                                </Button>
+                            </Col>
+                        </>
+                        : <>
+                            <Col xs={6} md={6} lg={6}>
+                                <Button onClick={props.onPreviewClick} disabled={props.disablePreview} className={'btn-block'}>
+                                    <div><i className="fa fa-music"></i></div>
+                                    {props.previewClicked ? 'Stop' : 'Preview'}
+                                </Button>
+                            </Col>
+                            <Col xs={6} md={6} lg={6}>
+                                <Button onClick={props.onButtonClick} className={'btn-block'}>
+                                    <div><i className="fa fa-star"></i></div>
+                                    {props.buttonText}
+                                </Button>
+                            </Col>
+                        </>
+                    }
                 </Row>
             </CardBody>
         </Card >

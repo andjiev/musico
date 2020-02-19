@@ -2,28 +2,29 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 
-import { GET_NEW_RELEASES, ROUTES } from '../../consts';
-import { Track, AlbumResult } from '../../lib/models';
+import { GET_ALBUM_TRACKS, ROUTES } from '../../consts';
+import { Track, AlbumTrackResult } from '../../lib/models';
 import { AppDispatch } from '../..';
 import ApplicationState from '../../store/application-state';
 import * as SharedStore from '../../store/shared-store';
 import { useQuery } from '@apollo/react-hooks';
 import { Container, Row, Col } from 'reactstrap';
-import { Element } from '../../components/element';
 import BeatLoader from "react-spinners/BeatLoader";
+import { ListItem } from '../../components/list-item';
 
-interface IProps extends RouteComponentProps {
+interface IProps extends RouteComponentProps<{ id: string }> {
     searchText: string;
 
     onSaveTrack: (track: Track) => void;
 }
 
-const Popular = (props: IProps) => {
+const Albums = (props: IProps) => {
     useEffect(() => {
-        document.title = 'Popular';
+        document.title = 'Albums';
     }, []);
 
-    const { data, loading, error } = useQuery<AlbumResult>(GET_NEW_RELEASES);
+    const { data, loading, error } = useQuery<AlbumTrackResult>(GET_ALBUM_TRACKS(props.match.params.id));
+    const [url, setUrl] = React.useState('');
 
     if (loading) {
         return (
@@ -38,26 +39,41 @@ const Popular = (props: IProps) => {
     }
     if (error) return <p>No new releases found</p>;
 
-    const filteredReleases = data?.newReleases.filter(x =>
+    const filteredTracks = data?.albumTracks.filter(x =>
         x.name.toLocaleLowerCase().startsWith(props.searchText.toLocaleLowerCase()) ||
         !!x.artists.filter(x => x.name.toLocaleLowerCase().startsWith(props.searchText.toLocaleLowerCase())).length);
 
     return (
         <>
             <div className="elementsContainer">
-                <Container>
-                    <h4>New releases:</h4>
+                <Container >
                     <Row className="p3">
-                        {filteredReleases?.map(x => {
+                        <Col xs={6}>
+                            <button className="btn btn-primary pull-left" onClick={() => props.history.push(ROUTES.POPULAR)}>Go back</button>
+                        </Col>
+                        <Col xs={6}>
+                            <h4 className="pull-right">Tracks in the album:</h4>
+                        </Col>
+                    </Row>
+
+                </Container>
+                <Container >
+                    <audio src={url} autoPlay hidden></audio>
+                    <Row className="pt-3">
+                        {filteredTracks?.map((x, index) => {
+                            index++;
                             return (
-                                <Col key={x.id} xs={12} md={4} lg={3}>
-                                    <Element
+                                <Col key={x.id} xs={12} md={12} lg={12}>
+                                    <ListItem
                                         name={x.name.length > 14 ? x.name.substring(0, 14) + '...' : x.name}
                                         artist={x.artists.map(x => x.name).join(', ').length > 14 ? x.artists.map(x => x.name).join(', ').substring(0, 14) + '...' : x.artists.map(x => x.name).join(', ')}
-                                        imageUrl={x.images.length ? x.images[0].url : undefined}
+                                        imageUrl={x.album.images.length ? x.album.images[0].url : undefined}
                                         buttonText="Save"
-                                        showOpenAlbumButton
-                                        onOpenAlbumClick={() => props.history.push(`albums/${x.id}`)}
+                                        id={index + '.'}
+                                        disablePreview={!x.url}
+                                        previewClicked={x.url === url}
+                                        onPreviewClick={() => setUrl(x.url === url ? '' : x.url)}
+                                        onButtonClick={() => props.onSaveTrack(x)}
                                     />
                                 </Col>
                             )
@@ -81,7 +97,7 @@ const mapStateToProps = (state: ApplicationState) => {
     };
 };
 
-const PopularPage = connect(() => mapStateToProps, mapDispatchToProps)(Popular);
+const AlbumsPage = connect(() => mapStateToProps, mapDispatchToProps)(Albums);
 
-export default PopularPage;
+export default AlbumsPage;
 
