@@ -12,11 +12,16 @@ const Element = (props: IElementProps) => {
                 <CardTitle>{props.name}</CardTitle>
                 <CardText>{props.artist}</CardText>
                 <Row>
-                    <Col xs={6} md={6} lg={6}><Button><div><i className="fa fa-music"></i></div> Preview</Button></Col>
+                    <Col xs={6} md={6} lg={6}>
+                        <Button onClick={props.onPreviewClick} disabled={props.disablePreview}>
+                            <div><i className="fa fa-music"></i></div>
+                            {props.previewClicked ? 'Stop' : 'Preview'}
+                        </Button>
+                    </Col>
                     <Col xs={6} md={6} lg={6}><Button onClick={props.onButtonClick}><div><i className="fa fa-star"></i></div> {props.buttonText}</Button></Col>
                 </Row>
             </CardBody>
-        </Card>
+        </Card >
     );
 }
 

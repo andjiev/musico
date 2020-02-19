@@ -22,10 +22,13 @@ const Favourites = (props: IFavouritesProps) => {
         props.onPageInit();
     }, []);
 
+    const [url, setUrl] = React.useState('');
+
     return (
         <>
             <div className="elementsContainer">
                 <Container >
+                    <audio src={url} autoPlay hidden></audio>
                     <Row className="p3">
                         {props.tracks.map(x => {
                             return (
@@ -35,6 +38,9 @@ const Favourites = (props: IFavouritesProps) => {
                                         artist={x.artists.map(x => x.name).join(', ')}
                                         imageUrl={x.album.images.length ? x.album.images[0].url : undefined}
                                         buttonText="Delete"
+                                        disablePreview={!x.url}
+                                        previewClicked={x.url === url}
+                                        onPreviewClick={() => setUrl(x.url === url ? '' : x.url)}
                                         onButtonClick={() => props.onDeleteTrack(x.id)} />
                                 </Col>
                             )

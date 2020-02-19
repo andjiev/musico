@@ -15,14 +15,16 @@ import Popular from './pages/popular';
 
 const App: React.FC = () => {
   return (
-  <Router>
-  <div className="App">
-      <Sidebar />
+    <Router>
+      <div className="App">
+        <Sidebar />
+        <Header />
+
         <Route exact path={ROUTES.EXPLORE} component={Explore}></Route>
         <Route exact path={ROUTES.FAVOURITES} component={Favourites}></Route>
         <Route exact path={ROUTES.POPULAR} component={Popular}></Route>
-    </div>
-  </Router>
+      </div>
+    </Router>
   )
 };
 

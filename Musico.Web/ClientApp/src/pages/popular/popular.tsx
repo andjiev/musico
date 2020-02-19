@@ -38,6 +38,7 @@ const Popular = (props: IProps) => {
                                         artist={x.artists.map(x => x.name).join(', ')}
                                         imageUrl={x.images.length ? x.images[0].url : undefined}
                                         buttonText="Save"
+                                        onPreviewClick={() => { }}
                                         onButtonClick={() => { }} />
                                 </Col>
                             )

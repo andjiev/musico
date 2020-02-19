@@ -10,6 +10,8 @@
 
         public int Popularity { get; set; }
 
+        public string Url { get; set; }
+
         public Album Album { get; set; }
 
         public List<Artist> Artists { get; set; } = new List<Artist>();

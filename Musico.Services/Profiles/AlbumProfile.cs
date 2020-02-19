@@ -10,6 +10,7 @@
         public AlbumProfile()
         {
             CreateMap<SimpleAlbum, Album>();
+
             CreateMap<SpotifyAPI.Web.Models.Image, DataContext.Entities.Image>();
         }
     }

@@ -13,6 +13,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { GET_TRACKS } from '../../consts';
 import { TracksResult, Track } from '../../lib/models';
 import BeatLoader from "react-spinners/BeatLoader";
+import ReactAudioPlayer from 'react-audio-player';
 
 interface IProps extends RouteComponentProps {
     searchText: string;
@@ -26,11 +27,11 @@ const Explore = (props: IProps) => {
     }, []);
 
     const { data, loading, error } = useQuery<TracksResult>(GET_TRACKS(props.searchText));
+    const [url, setUrl] = React.useState('');
 
     if (loading) {
         return (
             <>
-                <Header />
                 <Container style={{ marginTop: '80px' }}>
                     <Row className="justify-content-center">
                         <BeatLoader size={40} color={'#013E5E'} loading />
@@ -43,7 +44,6 @@ const Explore = (props: IProps) => {
     if (error) {
         return (
             <>
-                <Header />
 
                 {/* Add some empty state picture */}
             </>
@@ -52,9 +52,9 @@ const Explore = (props: IProps) => {
 
     return (
         <>
-            <Header />
             <div className="elementsContainer">
                 <Container >
+                    <audio src={url} autoPlay hidden></audio>
                     <Row className="p3">
                         {data?.tracks.map(x => {
                             return (
@@ -64,7 +64,11 @@ const Explore = (props: IProps) => {
                                         artist={x.artists.map(x => x.name).join(', ')}
                                         imageUrl={x.album.images.length ? x.album.images[0].url : undefined}
                                         buttonText="Save"
-                                        onButtonClick={() => props.onSaveTrack(x)} />
+                                        disablePreview={!x.url}
+                                        previewClicked={x.url === url}
+                                        onPreviewClick={() => setUrl(x.url === url ? '' : x.url)}
+                                        onButtonClick={() => props.onSaveTrack(x)}
+                                    />
                                 </Col>
                             )
                         })}

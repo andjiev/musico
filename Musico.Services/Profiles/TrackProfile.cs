@@ -9,8 +9,11 @@
     {
         public TrackProfile()
         {
-            CreateMap<FullTrack, Track>();
-            CreateMap<SimpleTrack, Track>();
+            CreateMap<FullTrack, Track>()
+                .ForMember(x => x.Url, x => x.MapFrom(z => z.PreviewUrl));
+
+            CreateMap<SimpleTrack, Track>()
+                .ForMember(x => x.Url, x => x.MapFrom(z => z.PreviewUrl));
         }
     }
 }

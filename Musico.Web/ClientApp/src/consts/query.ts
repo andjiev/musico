@@ -6,6 +6,7 @@ const GET_TRACKS = (search: string) => gql`
     id,
     name,
     popularity,
+    url,
     album {
       name,
       images {
@@ -39,6 +40,7 @@ const GET_ALBUM_TRACKS = (id: string) => gql`
   albumTracks(id: "${id}") {
     id,
     name,
+    url,
     album {
       name,
       images {
