@@ -1,15 +1,41 @@
 .elementsContainer{
     padding-top: 20px;
 }
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 1600px) {
     .elementsContainer{
         margin-left: 7vw;
+    }
+    .card-img-top{
+        height: 35vh;
     }
 }
 @media only screen and (max-width: 599px) {
     .elementsContainer{
         margin-left: 17vw;
     }
+    .card-img-top{
+        height: 40vh;
+    }
+    .logo-main{
+        margin-left: 17vw;
+    }
+}
+.logo-main{
+    padding-top: -50px;
+    margin-left: 7vw;
+}
+h4{
+    text-transform: uppercase;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+p{
+    font-size: 16px;
+    text-transform: uppercase;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
 }
 .card{
     border: none;
@@ -18,8 +44,11 @@
     background: linear-gradient(to bottom, #013E5E, #003452);
     color: #fff;
 }
+.card-img-top{
+    height: 35vh;
+}
 .card-title{
-    font-size: 20px;
+    font-size: 16px;
     text-transform: uppercase;
     font-family: 'Varela Round', sans-serif;
     font-weight: bold;
@@ -28,7 +57,7 @@
 .card-text{
     font-size: 14px;
     text-transform: uppercase;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Varela Round', sans-serif;
     font-weight: bold;
     letter-spacing: 3px;
 }
@@ -36,7 +65,16 @@ button.btn.btn-secondary{
     background: #1DE9B7;
     color: #003452;
     border: none;
-    font-size: 13px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: bold;
+}
+button.btn.btn-danger{
+    background: #ce3131;
+    color: #fff;
+    border: none;
+    font-size: 12px;
     text-transform: uppercase;
     font-family: 'Varela Round', sans-serif;
     font-weight: bold;

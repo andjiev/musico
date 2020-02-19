@@ -10,6 +10,7 @@ import * as ExploreStore from '../../store/explore-store';
 import { useQuery } from '@apollo/react-hooks';
 import { Container, Row, Col } from 'reactstrap';
 import { Element } from '../../components/element';
+import BeatLoader from "react-spinners/BeatLoader";
 
 interface IProps extends RouteComponentProps {
     onSaveTrack: (track: Track) => void;
@@ -22,24 +23,36 @@ const Popular = (props: IProps) => {
 
     const { data, loading, error } = useQuery<AlbumResult>(GET_NEW_RELEASES);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) {
+        return (
+            <>
+                <Container style={{ marginTop: '80px' }}>
+                    <Row className="justify-content-center">
+                        <BeatLoader size={40} color={'#013E5E'} loading />
+                    </Row>
+                </Container>
+            </>
+        );
+    }
     if (error) return <p>No new releases found</p>;
 
     return (
         <>
             <div className="elementsContainer">
                 <Container>
+                    <h4>Popular songs:</h4>
                     <Row className="p3">
                         {data?.newReleases.map(x => {
                             return (
                                 <Col key={x.id} xs={12} md={4} lg={3}>
                                     <Element
-                                        name={x.name}
-                                        artist={x.artists.map(x => x.name).join(', ')}
-                                        imageUrl={x.images.length ? x.images[0].url : undefined}
-                                        buttonText="Save"
-                                        onPreviewClick={() => { }}
-                                        onButtonClick={() => { }} />
+                                         name={x.name.length > 14 ? x.name.substring(0,14)+'...' : x.name}
+                                         artist={x.artists.map(x => x.name).join(', ').length > 14 ? x.artists.map(x => x.name).join(', ').substring(0,14)+ '...' : x.artists.map(x => x.name).join(', ')}
+                                         imageUrl={x.images.length ? x.images[0].url : undefined}
+                                         buttonText="Save"
+                                         onPreviewClick={() => { }}
+                                         onButtonClick={() => { }} 
+                                       />
                                 </Col>
                             )
                         })}

@@ -7,11 +7,10 @@ import ApplicationState from '../../store/application-state';
 import * as FavouritesStore from '..//../store/favourites-store';
 import { Track } from '../../lib/models';
 import { Col, Container, Row } from 'reactstrap';
-import { Element } from '../../components/element';
+import { ListItem } from '../../components/list-item';
 
 interface IFavouritesProps extends RouteComponentProps {
     tracks: Track[];
-
     onPageInit: () => void;
     onDeleteTrack: (id: string) => void;
 }
@@ -29,19 +28,23 @@ const Favourites = (props: IFavouritesProps) => {
             <div className="elementsContainer">
                 <Container >
                     <audio src={url} autoPlay hidden></audio>
+                    <h4>Favourite songs:</h4>
                     <Row className="p3">
-                        {props.tracks.map(x => {
+                        {props.tracks.map((x,index) => {
+                            index++;
                             return (
-                                <Col key={x.id} xs={12} md={4} lg={3}>
-                                    <Element
-                                        name={x.name}
-                                        artist={x.artists.map(x => x.name).join(', ')}
+                                <Col key={x.id} xs={12} md={12} lg={12}>
+                                    <ListItem
+                                        name={x.name.length > 14 ? x.name.substring(0,14)+'...' : x.name}
+                                        artist={x.artists.map(x => x.name).join(', ').length > 14 ? x.artists.map(x => x.name).join(', ').substring(0,14)+ '...' : x.artists.map(x => x.name).join(', ')}
                                         imageUrl={x.album.images.length ? x.album.images[0].url : undefined}
                                         buttonText="Delete"
+                                        id={index+'.'}
                                         disablePreview={!x.url}
                                         previewClicked={x.url === url}
                                         onPreviewClick={() => setUrl(x.url === url ? '' : x.url)}
-                                        onButtonClick={() => props.onDeleteTrack(x.id)} />
+                                        onButtonClick={() => props.onDeleteTrack(x.id) } 
+                                    />
                                 </Col>
                             )
                         })}
