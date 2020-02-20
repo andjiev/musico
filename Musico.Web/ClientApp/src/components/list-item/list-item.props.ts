@@ -6,6 +6,8 @@ export interface IItemListProps {
     previewClicked?: boolean;
     disablePreview?: boolean;
     buttonText: string;
+    buttonClass: string;
+    buttonIcon: string;
 
     onPreviewClick: () => void;
     onButtonClick: () => void;

@@ -16,8 +16,8 @@ const Element = (props: IElementProps) => {
                         <>
                             <Col xs={12}>
                                 <Button onClick={props.onOpenAlbumClick} className={'btn-block'}>
-                                    <div><i className="fa fa-music"></i></div>
-                                    Open album
+                                    <div><i className="fa fa-eye"></i></div>
+                                    View album
                                 </Button>
                             </Col>
                         </>

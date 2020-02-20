@@ -15,12 +15,14 @@ import { ListItem } from '../../components/list-item';
 interface IProps extends RouteComponentProps<{ id: string }> {
     searchText: string;
 
+    onPageInit: () => void;
     onSaveTrack: (track: Track) => void;
 }
 
 const Albums = (props: IProps) => {
     useEffect(() => {
-        document.title = 'Albums';
+        document.title = 'Album songs';
+        props.onPageInit();
     }, []);
 
     const { data, loading, error } = useQuery<AlbumTrackResult>(GET_ALBUM_TRACKS(props.match.params.id));
@@ -39,6 +41,7 @@ const Albums = (props: IProps) => {
     }
     if (error) return <p>No new releases found</p>;
 
+    const albumName = data?.albumTracks[0].album.name;
     const filteredTracks = data?.albumTracks.filter(x =>
         x.name.toLocaleLowerCase().startsWith(props.searchText.toLocaleLowerCase()) ||
         !!x.artists.filter(x => x.name.toLocaleLowerCase().startsWith(props.searchText.toLocaleLowerCase())).length);
@@ -49,10 +52,13 @@ const Albums = (props: IProps) => {
                 <Container >
                     <Row className="p3">
                         <Col xs={6}>
-                            <button className="btn btn-primary pull-left" onClick={() => props.history.push(ROUTES.POPULAR)}>Go back</button>
+                            <button className="btn btn-primary pull-left" onClick={() => props.history.push(ROUTES.POPULAR)}>
+                                <i className="fa fa-angle-left"></i> &nbsp;
+                                Go back
+                                </button>
                         </Col>
                         <Col xs={6}>
-                            <h4 className="pull-right">Tracks in the album:</h4>
+                            <h4 className="pull-right">{`Album "${albumName}":`}</h4>
                         </Col>
                     </Row>
 
@@ -69,6 +75,8 @@ const Albums = (props: IProps) => {
                                         artist={x.artists.map(x => x.name).join(', ').length > 14 ? x.artists.map(x => x.name).join(', ').substring(0, 14) + '...' : x.artists.map(x => x.name).join(', ')}
                                         imageUrl={x.album.images.length ? x.album.images[0].url : undefined}
                                         buttonText="Save"
+                                        buttonClass="btn-block"
+                                        buttonIcon="fa fa-star"
                                         id={index + '.'}
                                         disablePreview={!x.url}
                                         previewClicked={x.url === url}
@@ -86,6 +94,9 @@ const Albums = (props: IProps) => {
 };
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
+    onPageInit: () => {
+        dispatch(SharedStore.setSearchText(''));
+    },
     onSaveTrack: (track: Track) => {
         dispatch(SharedStore.onSaveTrack(track));
     }

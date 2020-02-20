@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { AppDispatch } from '../..';
 import ApplicationState from '../../store/application-state';
+import * as SharedStore from '../../store/shared-store';
 import * as FavouritesStore from '../../store/favourites-store';
 import { Track } from '../../lib/models';
 import { Col, Container, Row } from 'reactstrap';
@@ -40,10 +41,13 @@ const Favourites = (props: IFavouritesProps) => {
                             return (
                                 <Col key={x.id} xs={12} md={12} lg={12}>
                                     <ListItem
+                                        key={x.id}
                                         name={x.name.length > 14 ? x.name.substring(0, 14) + '...' : x.name}
                                         artist={x.artists.map(x => x.name).join(', ').length > 14 ? x.artists.map(x => x.name).join(', ').substring(0, 14) + '...' : x.artists.map(x => x.name).join(', ')}
                                         imageUrl={x.album.images.length ? x.album.images[0].url : undefined}
                                         buttonText="Delete"
+                                        buttonClass="btn-block btn-danger"
+                                        buttonIcon="fa fa-trash"
                                         id={index + '.'}
                                         disablePreview={!x.url}
                                         previewClicked={x.url === url}
@@ -62,6 +66,7 @@ const Favourites = (props: IFavouritesProps) => {
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
     onPageInit: () => {
+        dispatch(SharedStore.setSearchText(''));
         dispatch(FavouritesStore.onPageInit());
     },
     onDeleteTrack: (id: string) => {

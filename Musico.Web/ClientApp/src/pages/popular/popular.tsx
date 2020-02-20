@@ -15,12 +15,14 @@ import BeatLoader from "react-spinners/BeatLoader";
 interface IProps extends RouteComponentProps {
     searchText: string;
 
+    onPageInit: () => void;
     onSaveTrack: (track: Track) => void;
 }
 
 const Popular = (props: IProps) => {
     useEffect(() => {
         document.title = 'Popular';
+        props.onPageInit();
     }, []);
 
     const { data, loading, error } = useQuery<AlbumResult>(GET_NEW_RELEASES);
@@ -70,6 +72,9 @@ const Popular = (props: IProps) => {
 };
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
+    onPageInit: () => {
+        dispatch(SharedStore.setSearchText(''));
+    },
     onSaveTrack: (track: Track) => {
         dispatch(SharedStore.onSaveTrack(track));
     }

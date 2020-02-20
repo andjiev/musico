@@ -17,12 +17,14 @@ import logo from '../../assets/logo.png';
 interface IProps extends RouteComponentProps {
     searchText: string;
 
+    onPageInit: () => void;
     onSaveTrack: (track: Track) => void;
 }
 
 const Explore = (props: IProps) => {
     useEffect(() => {
         document.title = 'Explore';
+        props.onPageInit();
     }, []);
 
     const { data, loading, error } = useQuery<TracksResult>(GET_TRACKS(props.searchText));
@@ -79,6 +81,9 @@ const Explore = (props: IProps) => {
 };
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
+    onPageInit: () => {
+        dispatch(SharedStore.setSearchText(''));
+    },
     onSaveTrack: (track: Track) => {
         dispatch(SharedStore.onSaveTrack(track));
     }
