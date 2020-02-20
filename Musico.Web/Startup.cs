@@ -1,5 +1,6 @@
 namespace Musico.Web
 {
+    using System;
     using AutoMapper;
     using GraphiQl;
     using Microsoft.AspNetCore.Builder;
@@ -64,6 +65,7 @@ namespace Musico.Web
 
                 if (env.IsDevelopment())
                 {
+                    spa.Options.StartupTimeout = new TimeSpan(0, 0, 180);
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
