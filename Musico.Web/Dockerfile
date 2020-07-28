@@ -6,13 +6,22 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1-stretch AS build
 WORKDIR /src
+
 COPY ["Musico.Web/Musico.Web.csproj", "Musico.Web/"]
 COPY ["Musico.Services/Musico.Services.csproj", "Musico.Services/"]
 COPY ["Musico.DataContext/Musico.DataContext.csproj", "Musico.DataContext/"]
 RUN dotnet restore "Musico.Web/Musico.Web.csproj"
+
 COPY . .
 WORKDIR "/src/Musico.Web"
+
 RUN dotnet build "Musico.Web.csproj" -c Release -o /app/build
+
+RUN apt-get update && \
+    apt-get install -y wget && \
+    apt-get install -y gnupg2 && \
+    wget -qO- https://deb.nodesource.com/setup_12.x | bash - && \
+    apt-get install -y build-essential nodejs
 
 FROM build AS publish
 RUN dotnet publish "Musico.Web.csproj" -c Release -o /app/publish
@@ -24,4 +33,4 @@ COPY --from=publish /app/publish .
 # ENTRYPOINT ["dotnet", "Musico.Web.dll"]
 
 # heroku uses the following
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet EasyFind.API.dll
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet Musico.Web.dll
