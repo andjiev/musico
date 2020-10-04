@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+import '../node_modules/font-awesome/css/font-awesome.min.css';
 
 import App from './app';
 import * as serviceWorker from './serviceWorker';
@@ -22,28 +22,28 @@ const store = configureMusicoStore(history);
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-    uri: 'http://localhost:5000/'
+  uri: process.env.REACT_APP_API_URL,
 });
 
 const client = new ApolloClient({
-    cache,
-    link
+  cache,
+  link,
 });
 
 export type AppDispatch = typeof store.dispatch;
 const render = (Component: any) => {
-    ReactDOM.render(
-        <AppContainer>
-            <Provider store={store}>
-                <ConnectedRouter history={history}>
-                    <ApolloProvider client={client}>
-                        <Component />
-                    </ApolloProvider>
-                </ConnectedRouter>
-            </Provider>
-        </AppContainer>,
-        document.getElementById('root')
-    );
+  ReactDOM.render(
+    <AppContainer>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <ApolloProvider client={client}>
+            <Component />
+          </ApolloProvider>
+        </ConnectedRouter>
+      </Provider>
+    </AppContainer>,
+    document.getElementById('root')
+  );
 };
 
 render(App);

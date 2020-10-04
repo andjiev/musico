@@ -1,4 +1,4 @@
-export interface IItemListProps {
+export default interface IItemListProps {
     name: string;
     id: string;
     artist?: string;

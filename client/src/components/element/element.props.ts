@@ -1,4 +1,4 @@
-export interface IElementProps {
+export default interface IElementProps {
     name: string;
     artist?: string;
     imageUrl?: string;

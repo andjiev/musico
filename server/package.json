@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node server/index"
+    "start": "nodemon --exec babel-node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^2.18.1",
+    "apollo-server-express": "^2.18.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "graphql": "^15.3.0",
     "spotify-web-api-node": "^4.0.0"
   },
