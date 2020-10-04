@@ -1,4 +1,4 @@
-name: musico-web-demo
+name: musico-api-demo
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-16.04
     steps:
     - uses: actions/checkout@v2
-    - name: Build and deploy the Web
+    - name: Build and deploy the API
       env: 
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
