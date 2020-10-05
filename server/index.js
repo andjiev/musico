@@ -1,5 +1,3 @@
-require('dotenv').config({
-  path: `.env${process.env.NODE_ENV ? '.' + process.env.NODE_ENV : ''}`,
-});
+require('dotenv');
 
 module.exports = require('./server');
