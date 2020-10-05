@@ -19,7 +19,7 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app });
 
-const port = process.env.GRAPHQL_APP_PORT || 4000;
+const port = process.env.PORT || 4000;
 app.listen({ port }, () => {
-  console.log(`Server started at ${port}`);
+  console.log(`Server started at port ${port}`);
 });
