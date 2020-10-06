@@ -7,7 +7,8 @@ import resolvers from './schema/resolvers';
 import spotifyApi from './datasources/spotify';
 
 const app = express();
-app.use(cors({ origin: process.env.CLIENT_APP_URL }));
+// temporary CORS fix
+// app.use(cors({ origin: process.env.CLIENT_APP_URL }));
 
 const server = new ApolloServer({
   typeDefs,
